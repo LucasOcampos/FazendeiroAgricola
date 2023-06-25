@@ -16,9 +16,8 @@ function NovoCalculo(props) {
             <Menu/>
             <div className={"new-expense"}>
                 {!inForm &&
-                    <BotaoNovoCalculo onClickAddNovoCalculoHandler={onClickAddNovoCalculoHandler}></BotaoNovoCalculo>}
-                {inForm && <FormNovoCalculo addCalculoHandler={props.addCalculoHandler}
-                                            onClickAddNovoCalculoHandler={onClickAddNovoCalculoHandler}></FormNovoCalculo>}
+                    <BotaoNovoCalculo onClickAddNovoCalculoHandler={onClickAddNovoCalculoHandler}/>}
+                {inForm && <FormNovoCalculo onClickAddNovoCalculoHandler={onClickAddNovoCalculoHandler}/>}
             </div>
         </div>
     );

@@ -120,7 +120,7 @@ export function AuthContextProvider({children}) {
             password.classList.add("error");
             password.focus();
             password.select();
-            toast.error("Por favor insira sua email.",
+            toast.error("Por favor insira sua senha.",
                 {
                     theme: "dark",
                 });

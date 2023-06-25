@@ -1,7 +1,8 @@
 import "./FormNovoCalculo.css";
 import {useState} from "react";
-import { collection, addDoc } from "firebase/firestore";
+import {addDoc, collection} from "firebase/firestore";
 import {db} from "../../../firebase-config";
+import {toast} from "react-toastify";
 
 function FormNovoCalculo(props) {
     const [calculo, setCalculo] = useState(
@@ -35,9 +36,11 @@ function FormNovoCalculo(props) {
             calculo.status = calculo.valorDeCusto < calculo.valorDeVenda ? "Viável" : "Inviável";
 
             addToFirestore(calculo).then();
+            toast.success("Cálculo realizado.",
+                {
+                    theme: "dark",
+                });
 
-            // Deletar depois de fazer get do Firestore
-            props.addCalculoHandler(calculo);
             setCalculo({produto: "", valorDeCusto: "", valorDeVenda: "", status: ""});
         }
     }
