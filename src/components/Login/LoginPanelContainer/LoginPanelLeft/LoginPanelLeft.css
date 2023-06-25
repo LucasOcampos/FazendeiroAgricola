@@ -1,0 +1,23 @@
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-left h4 {
+    text-align: left;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.overlay-left ul {
+    text-align: left;
+    padding-left: 0;
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+}

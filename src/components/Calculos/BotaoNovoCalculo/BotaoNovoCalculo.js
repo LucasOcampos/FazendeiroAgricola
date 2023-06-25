@@ -1,12 +1,12 @@
-import "../NewExpenseForm/NewExpenseForm.css";
-import "./NewExpenseButton.css";
+import "../FormNovoCalculo/FormNovoCalculo.css";
+import "./BotaoNovoCalculo.css";
 
-function NewExpenseButton(props) {
+function BotaoNovoCalculo(props) {
     return (
         <div>
-            <button id={"add-new-expense"} onClick={props.onClickAddNewExpenseHandler}>Add New Expense</button>
+            <button id={"add-new-expense"} onClick={props.onClickAddNovoCalculoHandler}>Fazer novo cálculo</button>
         </div>
     );
 }
 
-export default NewExpenseButton;
+export default BotaoNovoCalculo;

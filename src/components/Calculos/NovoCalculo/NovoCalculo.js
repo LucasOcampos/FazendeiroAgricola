@@ -1,13 +1,13 @@
-import "./NewExpense.css";
+import "./NovoCalculo.css";
 import {useState} from "react";
-import NewExpenseButton from "../NewExpenseButton/NewExpenseButton";
-import NewExpenseForm from "../NewExpenseForm/NewExpenseForm";
+import BotaoNovoCalculo from "../BotaoNovoCalculo/BotaoNovoCalculo";
+import FormNovoCalculo from "../FormNovoCalculo/FormNovoCalculo";
 import Menu from "../../Menu/Menu";
 
-function NewExpense(props) {
+function NovoCalculo(props) {
     const [inForm, setInForm] = useState(false);
 
-    function onClickAddNewExpenseHandler() {
+    function onClickAddNovoCalculoHandler() {
         setInForm(!inForm);
     }
 
@@ -16,12 +16,12 @@ function NewExpense(props) {
             <Menu/>
             <div className={"new-expense"}>
                 {!inForm &&
-                    <NewExpenseButton onClickAddNewExpenseHandler={onClickAddNewExpenseHandler}></NewExpenseButton>}
-                {inForm && <NewExpenseForm addExpenseHandler={props.addExpenseHandler}
-                                           onClickAddNewExpenseHandler={onClickAddNewExpenseHandler}></NewExpenseForm>}
+                    <BotaoNovoCalculo onClickAddNovoCalculoHandler={onClickAddNovoCalculoHandler}></BotaoNovoCalculo>}
+                {inForm && <FormNovoCalculo addCalculoHandler={props.addCalculoHandler}
+                                            onClickAddNovoCalculoHandler={onClickAddNovoCalculoHandler}></FormNovoCalculo>}
             </div>
         </div>
     );
 }
 
-export default NewExpense;
+export default NovoCalculo;

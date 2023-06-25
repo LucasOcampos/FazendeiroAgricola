@@ -1,32 +1,36 @@
-import "./NewExpenseForm.css";
+import "./FormNovoCalculo.css";
 import {useState} from "react";
 
-function NewExpenseForm(props) {
-    const [expense, setExpense] = useState({id: 0.0, title: "", amount: "", date: ""});
+function FormNovoCalculo(props) {
+    const [calculo, setCalculo] = useState(
+        {id: 0.0, produto: "", valorDeCusto: "", valorDeVenda: "", status: ""}
+    );
 
-    function expenseChangeHandler(event) {
-        setExpense((prevState) => {
-            return event.target.id === "new-expense-title" ? {
+    function calculoChangeHandler(event) {
+        setCalculo((prevState) => {
+            return event.target.id === "new-expense-produto" ? {
                 ...prevState,
-                title: event.target.value
-            } : event.target.id === "new-expense-amount" ? {
-                ...prevState, amount: event.target.value
+                produto: event.target.value
+            } : event.target.id === "new-expense-valorDeCusto" ? {
+                ...prevState,
+                valorDeCusto: event.target.value
             } : {
                 ...prevState,
-                date: event.target.value
+                valorDeVenda: event.target.value
             };
         });
     }
 
     function onSubmitHandler(event) {
         event.preventDefault();
-        if (expense.title && expense.amount && expense.date) {
-            expense.amount = parseFloat(expense.amount);
-            expense.date = new Date(expense.date + "T00:00:00");
-            expense.id = Math.random().toString();
+        if (calculo.produto && calculo.valorDeCusto && calculo.valorDeVenda && calculo.data) {
+            calculo.valorDeCusto = parseFloat(calculo.valorDeCusto);
+            calculo.valorDeVenda = parseFloat(calculo.valorDeVenda);
+            calculo.status = calculo.valorDeCusto < calculo.valorDeVenda ? "Viável" : "Inviável";
+            calculo.id = Math.random().toString();
 
-            props.addExpenseHandler(expense);
-            setExpense({id: 0.0, title: "", amount: "", date: ""});
+            props.addCalculoHandler(calculo);
+            setCalculo({id: 0.0, produto: "", valorDeCusto: "", valorDeVenda: "", status: ""});
         }
     }
 
@@ -34,28 +38,29 @@ function NewExpenseForm(props) {
         <form onSubmit={onSubmitHandler}>
             <div className={"new-expense__controls"}>
                 <div className={"new-expense__control"}>
-                    <label>Title</label>
-                    <input type={"text"} value={expense.title} id={"new-expense-title"}
-                           onChange={expenseChangeHandler}/>
+                    <label>Produto</label>
+                    <input type={"text"} value={calculo.produto} id={"new-expense-produto"}
+                           onChange={calculoChangeHandler}/>
                 </div>
                 <div className={"new-expense__control"}>
-                    <label>Amount</label>
-                    <input type={"number"} value={expense.amount} min={"0.01"} step={"0.01"} id={"new-expense-amount"}
-                           onChange={expenseChangeHandler}/>
+                    <label>Custo de Plantação</label>
+                    <input type={"number"} value={calculo.valorDeCusto} min={"0.01"} step={"0.01"}
+                           id={"new-expense-valorDeCusto"}
+                           onChange={calculoChangeHandler}/>
                 </div>
                 <div className={"new-expense__control"}>
-                    <label>Date</label>
-                    <input type={"date"} value={expense.date} min={"2019-01-01"} max={"2024-12-31"}
-                           id={"new-expense-date"}
-                           onChange={expenseChangeHandler}/>
+                    <label>Valor de Venda</label>
+                    <input type={"number"} value={calculo.valorDeVenda} min={"0.01"} step={"0.01"}
+                           id={"new-expense-valorDeVenda"}
+                           onChange={calculoChangeHandler}/>
                 </div>
             </div>
             <div className={"new-expense__actions"}>
-                <button type={"reset"} onClick={props.onClickAddNewExpenseHandler}>Cancel</button>
-                <button type={"submit"}>Add Expense</button>
+                <button type={"reset"} onClick={props.onClickAddNovoCalculoHandler}>Cancelar</button>
+                <button type={"submit"}>Adicionar Cálculo</button>
             </div>
         </form>
     );
 }
 
-export default NewExpenseForm;
+export default FormNovoCalculo;

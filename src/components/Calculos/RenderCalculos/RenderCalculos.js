@@ -1,34 +1,19 @@
-import "./RenderExpenses.css";
+import "./RenderCalculos.css";
 import Card from "../../Card/Card";
-import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
-import {useState} from "react";
-import RenderExpensesList from "../RenderExpensesList/RenderExpensesList";
-import ChartCalculo from "../ChartCalculo/ChartCalculo";
+import RenderCalculosLista from "../RenderCalculosLista/RenderCalculosLista";
 import Menu from "../../Menu/Menu";
 
-function RenderExpenses(props) {
-    const [filterYear, setFilterYear] = useState("");
-
-    let expenses = props.expenses;
-    if (filterYear) {
-        expenses = expenses.filter(expense => expense.date.getFullYear() === parseInt(filterYear));
-    }
-
-    function onChangeExpensesFilterHandler(event) {
-        setFilterYear(event.target.value);
-    }
+function RenderCalculos(props) {
+    let calculos = props.calculos;
 
     return (
         <div>
             <Menu/>
             <Card className={"expenses"}>
-                <ExpensesFilter initialSelected={filterYear}
-                                onChangeExpensesFilterHandler={onChangeExpensesFilterHandler}></ExpensesFilter>
-                <ChartCalculo expenses={expenses}></ChartCalculo>
-                <RenderExpensesList expenses={expenses}></RenderExpensesList>
+                <RenderCalculosLista calculos={calculos}></RenderCalculosLista>
             </Card>
         </div>
     );
 }
 
-export default RenderExpenses;
+export default RenderCalculos;

@@ -1,15 +1,10 @@
-import "./RenderExpensesList.css";
+import "./RenderCalculosLista.css";
 import ItemCalculo from "../ItemCalculo/ItemCalculo";
 
-function RenderExpensesList(props) {
-    let expenseItems = <h2 className={"expenses-list__fallback"}>Found no expenses.</h2>;
-    if (props.expenses.length > 0) {
-        expenseItems = props.expenses.map((expense) => {
-            return <ItemCalculo key={expense.id} expense={expense}></ItemCalculo>;
-        });
-    }
-
-    return expenseItems;
+function RenderCalculosLista(props) {
+    return props.calculos.map((calculo) => {
+        return <ItemCalculo key={calculo.id} calculo={calculo}></ItemCalculo>;
+    });
 }
 
-export default RenderExpensesList;
+export default RenderCalculosLista;
