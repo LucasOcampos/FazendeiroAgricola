@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import LoginFormSignUp from "./LoginFormSignUp/LoginFormSignUp";
 import LoginFormLogin from "./LoginFormLogin/LoginFormLogin";
 import LoginPanelContainer from "../LoginPanelContainer/LoginPanelContainer";
-import {toast, ToastContainer} from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 import {UserAuth} from "../AuthContext/AuthContext";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
