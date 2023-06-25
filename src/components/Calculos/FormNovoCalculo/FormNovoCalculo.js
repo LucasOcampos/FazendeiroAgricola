@@ -1,9 +1,11 @@
 import "./FormNovoCalculo.css";
 import {useState} from "react";
+import { collection, addDoc } from "firebase/firestore";
+import {db} from "../../../firebase-config";
 
 function FormNovoCalculo(props) {
     const [calculo, setCalculo] = useState(
-        {id: 0.0, produto: "", valorDeCusto: "", valorDeVenda: "", status: ""}
+        {produto: "", valorDeCusto: "", valorDeVenda: "", status: ""}
     );
 
     function calculoChangeHandler(event) {
@@ -21,16 +23,22 @@ function FormNovoCalculo(props) {
         });
     }
 
+    async function addToFirestore(data) {
+        await addDoc(collection(db, "calculos"), data);
+    }
+
     function onSubmitHandler(event) {
         event.preventDefault();
-        if (calculo.produto && calculo.valorDeCusto && calculo.valorDeVenda && calculo.data) {
+        if (calculo.produto && calculo.valorDeCusto && calculo.valorDeVenda) {
             calculo.valorDeCusto = parseFloat(calculo.valorDeCusto);
             calculo.valorDeVenda = parseFloat(calculo.valorDeVenda);
             calculo.status = calculo.valorDeCusto < calculo.valorDeVenda ? "Viável" : "Inviável";
-            calculo.id = Math.random().toString();
 
+            addToFirestore(calculo).then();
+
+            // Deletar depois de fazer get do Firestore
             props.addCalculoHandler(calculo);
-            setCalculo({id: 0.0, produto: "", valorDeCusto: "", valorDeVenda: "", status: ""});
+            setCalculo({produto: "", valorDeCusto: "", valorDeVenda: "", status: ""});
         }
     }
 
